@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragmentos :: head('Pesquisas > Inserir ou Atualizar uma Pesquisa')}"></head>
+
+<body>
+
+    <header th:replace="~{fragmentos :: navBar}"></header>
+
+    <div class="container mt-5">
+
+        <div class="card">
+            <div class="card-header">Cadastro de Pesquisas</div>
+            <div class="card-body">
+                <form th:action="@{/pesquisas}" method="post" th:object="${pesquisa}">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-outline">
+                                <input type="text" id="nome" class="form-control" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome') ? 'is-invalid' : ''}" />
+                                <label class="form-label" for="nome">NOME</label>
+                            </div>
+                            <span th:errors="*{nome}" style="color: rgb(209, 34, 34);"></span>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-outline">
+                                <input type="email" id="email" class="form-control" th:field="*{email}" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"/>
+                                <label class="form-label" for="email">E-MAIL</label>
+                            </div>
+                            <span th:errors="*{email}" style="color: rgb(209, 34, 34);"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-2">
+                            <h6>Sexo</h6>
+                            <!-- Default radio -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Sexo"
+                                    id="flexRadioDefault1" value="masculino" th:field="*{sexo}" th:classappend="${#fields.hasErrors('sexo') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault1"> Masculino </label>
+                            </div>
+
+                            <!-- Default checked radio -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Sexo"
+                                    id="flexRadioDefault2" value="feminino" th:field="*{sexo}" th:classappend="${#fields.hasErrors('sexo') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault2"> Feminino </label>
+                            </div>
+                            
+                        </div>
+                        <div class="col-8">
+                            <h6>Estado Civil</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="EstadoCivil"
+                                    id="flexRadioDefault3" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.EstadoCivil).CASADO}" th:field="*{estadoCivil}" th:classappend="${#fields.hasErrors('estadoCivil') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault3"> Casado(a) </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="EstadoCivil"
+                                    id="flexRadioDefault4" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.EstadoCivil).SOLTEIRO}" th:field="*{estadoCivil}" th:classappend="${#fields.hasErrors('estadoCivil') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault4"> Solteiro(a) </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="EstadoCivil"
+                                    id="flexRadioDefault5" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.EstadoCivil).VIUVO}" th:field="*{estadoCivil}" th:classappend="${#fields.hasErrors('estadoCivil') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault5"> Viuvo(a) </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="EstadoCivil"
+                                    id="flexRadioDefault6" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.EstadoCivil).DIVORCIADO}" th:field="*{estadoCivil}" th:classappend="${#fields.hasErrors('estadoCivil') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="flexRadioDefault6"> Divorciado(a) </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span th:errors="*{sexo}" style="color: rgb(209, 34, 34);"></span>
+                        <span th:errors="*{estadoCivil}" style="color: rgb(209, 34, 34);"></span>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <h6>Generos preferidos</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).FICCAO}" id="chkFiccao" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkFiccao">Ficção</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).ACAO}" id="chkAcao" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkAcao">Ação</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).TERROR}" id="chkTerror" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkTerror">Terror</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).ROMANCE}" id="chkRomance" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkRomance">Romance</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).COMEDIA}" id="chkComedia" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkComedia">Comédia</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" th:value="${T(br.com.gva.aulaspringpesquisa.model.enums.GeneroFilmes).ANIMACAO}" id="chkAnimacao" th:field="*{generosFilme}" th:classappend="${#fields.hasErrors('generosFilme') ? 'is-invalid' : ''}"/>
+                                <label class="form-check-label" for="chkAnimacao">Animação</label>
+                              </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="reset" class="btn btn-danger">Limpar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+</body>
+
+</html>

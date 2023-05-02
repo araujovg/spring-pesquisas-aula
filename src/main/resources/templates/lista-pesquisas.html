@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragmentos :: head('Pesquisas > Todas as Pesquisas')}"></head>
+
+<body>
+
+    <header th:replace="~{fragmentos :: navBar}"></header>
+
+    <div class="container mt-5">
+        <h3>Pesquisas listadas</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">EstadoCivil</th>
+                <th scope="col">Gen. de Filmes</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pesquisa : ${pesquisas}">
+                <td th:text="${pesquisa.id}"></td>
+                <td th:text="${pesquisa.nome}"></td>
+                <td th:text="${pesquisa.sexo}"></td>
+                <td th:text="${pesquisa.estadoCivil}"></td>
+                <td th:text="${pesquisa.generosFilme}"></td>
+                <th>
+                    <a th:href="@{pesquisas/remover(id=${pesquisa.id})}" class="btn btn-danger">Excluir</a>
+                </th>
+              </tr>              
+            </tbody>
+          </table>
+    </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+</body>
+
+</html>
